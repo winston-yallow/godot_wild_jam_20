@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Pathway",
 "language": "GDScript",
 "path": "res://pathways/Pathway.gd"
+}, {
+"base": "Spatial",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/Player.gd"
 } ]
 _global_script_class_icons={
-"Pathway": ""
+"Pathway": "",
+"Player": ""
 }
 
 [application]

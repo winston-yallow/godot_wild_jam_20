@@ -1,4 +1,5 @@
 extends Spatial
+class_name Player
 
 
 export var speed := 8.0
