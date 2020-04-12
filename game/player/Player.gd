@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 # warning-ignore:unused_argument
 func _interpolate_offset(offs: float, direction: Vector3, make_current := false) -> Vector3:
     if not direction:
-        direction = Vector3.UP
+        direction = Vector3.FORWARD
     if offs >= current.get_baked_length():
         var remaining := offs - current.get_baked_length()
         if not has_next:
