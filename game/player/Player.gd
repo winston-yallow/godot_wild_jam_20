@@ -7,6 +7,7 @@ export var smoothness := 6.0
 export var lookahead := 0.5
 export var first_path: NodePath = '.'
 
+var smoothed_direction := Vector3()
 var desired := Transform()
 var possible_pathways := []
 var offset := 0.0
@@ -43,13 +44,17 @@ func _process(delta: float) -> void:
         direction = direction.normalized() * drift
     direction = global_transform.basis.xform(direction)
     
+    smoothed_direction = smoothed_direction.linear_interpolate(
+        direction, delta * smoothness
+    )
+    
     offset += delta * speed
     var ahead := _interpolate_offset(offset + lookahead, direction)
     var start := _interpolate_offset(offset, direction, true)
     var up := Vector3.UP
     
-    desired.origin = start + direction
-    desired = desired.looking_at(ahead + direction, up)
+    desired.origin = start + smoothed_direction
+    desired = desired.looking_at(ahead + smoothed_direction, up)
     
     global_transform = global_transform.interpolate_with(desired, delta * smoothness)
 
