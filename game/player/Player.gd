@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
     offset += delta * speed
     var ahead := _interpolate_offset(offset + lookahead, direction)
     var start := _interpolate_offset(offset, direction, true)
-    var up := Vector3(-5, 20, 0) - global_transform.origin
+    var up := Vector3.UP
     
     desired.origin = start + direction
     desired = desired.looking_at(ahead + direction, up)
