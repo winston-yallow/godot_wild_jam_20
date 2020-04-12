@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://pathways/Pathway.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tmp/icon_texture.png" type="Texture" id=3]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.00573191, 0, -0.00167036, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5, 0, 0, -5, 0, 0, -5, 0, 15, 0, 0, 0, 0, 0, 0, -10, 0, 10, 0, 0, 0, 0, 0, 0, -10, 0, 0 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=2]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.00573191, 0, -0.00167036, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5, 0, 0, -5, 0, 0, -5, 0, 15, 0, 0, 0, 0, 0, 0, -10, 0, 10, 0, 0, 0, 0, 0, 0, -10, 0, 0 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 50, 50 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 10, 10, 10 )
+
+[node name="00_Test" type="Spatial"]
+
+[node name="Pathway" parent="." instance=ExtResource( 1 )]
+curve = SubResource( 1 )
+
+[node name="Pathway2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 0, 0 )
+curve = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+first_path = NodePath("../Pathway")
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 2.12043e-08, 2.61051e-09, -2.12043e-08, 0.970139, 0.242548, 2.6105e-09, -0.242548, 0.970139, -2.04821e-07, 1.18044, 2.34287 )
+
+[node name="Ground" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
