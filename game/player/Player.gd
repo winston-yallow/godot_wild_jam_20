@@ -63,9 +63,9 @@ func _process(delta: float) -> void:
 
 
 # warning-ignore:unused_argument
-func _interpolate_offset(offs: float, direction: Vector3, make_current := false) -> Vector3:
-    if not direction:
-        direction = Vector3.FORWARD
+func _interpolate_offset(offs: float, dir: Vector3, make_current := false) -> Vector3:
+    if not dir:
+        dir = Vector3.FORWARD
     if offs >= current.get_baked_length():
         var remaining := offs - current.get_baked_length()
         if not has_next:
@@ -73,7 +73,7 @@ func _interpolate_offset(offs: float, direction: Vector3, make_current := false)
                 push_error('Path ended without any possible continuations!')
                 return current.interpolate_baked(current.get_baked_length())
             # TODO: Use actual logic to determine which path to choose
-            next = _get_best_pathway(direction).get_global_curve()
+            next = _get_best_pathway(dir).get_global_curve()
             has_next = true
             possible_pathways.clear()
         if make_current:
@@ -85,11 +85,11 @@ func _interpolate_offset(offs: float, direction: Vector3, make_current := false)
         return current.interpolate_baked(offs)
 
 
-func _get_best_pathway(direction: Vector3) -> Pathway:
+func _get_best_pathway(dir: Vector3) -> Pathway:
     var best := possible_pathways[0] as Pathway
-    var best_angle := best.get_direction_vector().angle_to(direction)
+    var best_angle := best.get_direction_vector().angle_to(dir)
     for pathway in possible_pathways:
-        var angle := pathway.get_direction_vector().angle_to(direction) as float
+        var angle := pathway.get_direction_vector().angle_to(dir) as float
         if angle < best_angle:
             best = pathway
             best_angle = angle
