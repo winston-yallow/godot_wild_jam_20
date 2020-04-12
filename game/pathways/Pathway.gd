@@ -18,6 +18,11 @@ func get_desired_rotation() -> float:
     return _selection_rotation
 
 
+func get_direction_vector() -> Vector3:
+    var vec := Vector3.UP.rotated(Vector3.FORWARD, get_desired_rotation())
+    return transform.basis.xform_inv(vec)
+
+
 func get_global_curve() -> Curve3D:
     if _global_curve_cache:
         return _global_curve_cache

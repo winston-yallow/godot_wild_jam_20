@@ -3,7 +3,7 @@ extends Spatial
 
 export var speed := 8.0
 export var drift := 2.0
-export var smoothness := 5.0
+export var smoothness := 6.0
 export var lookahead := 0.5
 export var first_path: NodePath = '.'
 
@@ -27,8 +27,8 @@ func _ready() -> void:
     desired = global_transform
     current = get_node(first_path).get_global_curve()
     offset = 0.0
-    var ahead := _interpolate_offset(offset + lookahead)
-    var start := _interpolate_offset(offset, true)
+    var ahead := _interpolate_offset(offset + lookahead, Vector3.UP)
+    var start := _interpolate_offset(offset, Vector3.UP, true)
     look_at_from_position(start, ahead, Vector3.UP)
 
 
@@ -44,10 +44,9 @@ func _process(delta: float) -> void:
     direction = global_transform.basis.xform(direction)
     
     offset += delta * speed
-    var ahead := _interpolate_offset(offset + lookahead)
-    var start := _interpolate_offset(offset, true)
+    var ahead := _interpolate_offset(offset + lookahead, direction)
+    var start := _interpolate_offset(offset, direction, true)
     var up := Vector3(-5, 20, 0) - global_transform.origin
-    up = Vector3.UP
     
     desired.origin = start + direction
     desired = desired.looking_at(ahead + direction, up)
@@ -55,7 +54,10 @@ func _process(delta: float) -> void:
     global_transform = global_transform.interpolate_with(desired, delta * smoothness)
 
 
-func _interpolate_offset(offs: float, make_current := false) -> Vector3:
+# warning-ignore:unused_argument
+func _interpolate_offset(offs: float, direction: Vector3, make_current := false) -> Vector3:
+    if not direction:
+        direction = Vector3.UP
     if offs >= current.get_baked_length():
         var remaining := offs - current.get_baked_length()
         if not has_next:
@@ -63,7 +65,7 @@ func _interpolate_offset(offs: float, make_current := false) -> Vector3:
                 push_error('Path ended without any possible continuations!')
                 return current.interpolate_baked(current.get_baked_length())
             # TODO: Use actual logic to determine which path to choose
-            next = possible_pathways[0].get_global_curve()
+            next = _get_best_pathway(direction).get_global_curve()
             has_next = true
             possible_pathways.clear()
         if make_current:
@@ -73,6 +75,17 @@ func _interpolate_offset(offs: float, make_current := false) -> Vector3:
         return next.interpolate_baked(remaining)
     else:
         return current.interpolate_baked(offs)
+
+
+func _get_best_pathway(direction: Vector3) -> Pathway:
+    var best := possible_pathways[0] as Pathway
+    var best_angle := best.get_direction_vector().angle_to(direction)
+    for pathway in possible_pathways:
+        var angle := pathway.get_direction_vector().angle_to(direction) as float
+        if angle < best_angle:
+            best = pathway
+            best_angle = angle
+    return best
 
 
 func _on_pathway_entered(other: Area):
