@@ -8,6 +8,7 @@ export var smoothness := 6.0
 export var lookahead := 3.0
 export var first_path: NodePath = '.'
 
+var direction := Vector3()
 var smoothed_direction := Vector3()
 var desired := Transform()
 var possible_pathways := []
@@ -36,7 +37,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
     
-    var direction := Vector3()
+    direction = Vector3()
     direction.x += Input.get_action_strength('game_right') * drift
     direction.x -= Input.get_action_strength('game_left') * drift
     direction.y += Input.get_action_strength('game_up') * drift
@@ -105,3 +106,11 @@ func _on_pathway_exited(other: Area):
     var parent = other.get_parent()
     while parent in possible_pathways:
         possible_pathways.erase(parent)
+
+
+func get_local_direction() -> Vector3:
+    return global_transform.basis.xform_inv(direction)
+
+
+func get_local_smoothed_direction() -> Vector3:
+    return global_transform.basis.xform_inv(smoothed_direction)
