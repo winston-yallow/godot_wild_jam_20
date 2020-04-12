@@ -4,7 +4,7 @@ extends Spatial
 export var speed := 8.0
 export var drift := 2.0
 export var smoothness := 6.0
-export var lookahead := 0.5
+export var lookahead := 3.0
 export var first_path: NodePath = '.'
 
 var smoothed_direction := Vector3()
@@ -52,8 +52,9 @@ func _process(delta: float) -> void:
     var ahead := _interpolate_offset(offset + lookahead, direction)
     var start := _interpolate_offset(offset, direction, true)
     var up := Vector3.UP
+    var pos = start + ((ahead - start) * 0.5)
     
-    desired.origin = start + smoothed_direction
+    desired.origin = pos + smoothed_direction
     desired = desired.looking_at(ahead + smoothed_direction, up)
     
     global_transform = global_transform.interpolate_with(desired, delta * smoothness)
