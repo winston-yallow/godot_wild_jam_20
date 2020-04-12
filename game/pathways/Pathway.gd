@@ -13,6 +13,7 @@ func _ready() -> void:
     # warning-ignore:return_value_discarded
     connect('curve_changed', self, '_update_start_location')
     _update_start_location()
+    $Pivot/Indicator.visible = Engine.editor_hint or get_tree().debug_collisions_hint
 
 
 func get_desired_rotation() -> float:

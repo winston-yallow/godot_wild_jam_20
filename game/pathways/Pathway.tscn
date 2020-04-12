@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://pathways/Pathway.gd" type="Script" id=1]
 
@@ -13,6 +13,10 @@ radius = 2.0
 
 [sub_resource type="PrismMesh" id=3]
 size = Vector3( 0.5, 1, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 0.235294, 1, 1, 0.654902 )
 
 [node name="Pathway" type="Path"]
 curve = SubResource( 1 )
@@ -29,4 +33,4 @@ transform = Transform( -0.99999, 0, -0.000573069, 0, 0.999993, 0, 0.000573065, 0
 [node name="Indicator" type="MeshInstance" parent="Pivot"]
 transform = Transform( -1, 0, -0.000573071, 0, 1, 0, 0.000573071, 0, -1, -0.006, 0.5, -0.002 )
 mesh = SubResource( 3 )
-material/0 = null
+material/0 = SubResource( 4 )
