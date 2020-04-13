@@ -7,6 +7,7 @@ export var drift := 2.0
 export var smoothness := 6.0
 export var lookahead := 3.0
 export var first_path: NodePath = '.'
+export var nose := Vector3.FORWARD
 
 var direction := Vector3()
 var smoothed_direction := Vector3()

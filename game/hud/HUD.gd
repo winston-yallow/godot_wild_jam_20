@@ -26,7 +26,8 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-    var center := OS.window_size / 2
+    var cam := get_tree().root.get_camera()
+    var center := cam.unproject_position(player.to_global(player.nose))
     draw_arc(center, 40, 0, TAU, 24, Color(0, 1.0, 0.7, 0.6), 1.0)
     draw_circle(center + smoothed_direction, 4, Color(0, 1.0, 0.7, 0.6))
     draw_circle(center + direction_interpolated, 2, Color(0, 1.0, 0.7, 0.9))
