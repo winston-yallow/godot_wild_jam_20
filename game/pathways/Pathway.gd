@@ -25,20 +25,9 @@ func get_direction_vector() -> Vector3:
 
 
 func get_global_curve() -> Curve3D:
-    if _global_curve_cache:
-        return _global_curve_cache
-    var global_curve := Curve3D.new()
-    for idx in curve.get_point_count():
-        var point = curve.get_point_position(idx)
-        var vec_in = curve.get_point_in(idx)
-        var vec_out = curve.get_point_out(idx)
-        global_curve.add_point(
-            to_global(point),
-            transform.basis.xform_inv(vec_in),
-            transform.basis.xform_inv(vec_out)
-        )
-    _global_curve_cache = global_curve
-    return global_curve
+    if not _global_curve_cache:
+        _global_curve_cache = Util.to_global_curve(self, curve)
+    return _global_curve_cache
 
 
 func _update_start_location():

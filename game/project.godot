@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "SpaceMod",
 "language": "GDScript",
 "path": "res://spacemods/SpaceMod.gd"
+}, {
+"base": "Object",
+"class": "Util",
+"language": "GDScript",
+"path": "res://utilities/Util.gd"
 } ]
 _global_script_class_icons={
 "Pathway": "",
 "Player": "",
-"SpaceMod": ""
+"SpaceMod": "",
+"Util": ""
 }
 
 [application]
