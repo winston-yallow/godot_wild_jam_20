@@ -176,8 +176,8 @@ func _on_area_exited(other: Area) -> void:
 
 
 func get_local_direction() -> Vector3:
-    return global_transform.basis.xform_inv(direction)
+    return global_transform.basis.xform_inv(direction) / drift
 
 
 func get_local_smoothed_direction() -> Vector3:
-    return global_transform.basis.xform_inv(smoothed_direction)
+    return global_transform.basis.xform_inv(smoothed_direction) / drift
