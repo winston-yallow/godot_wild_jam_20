@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://hud/HUD.gd" type="Script" id=1]
+[ext_resource path="res://fonts/courier_prime.tres" type="DynamicFont" id=2]
 
 [node name="HUD" type="Control"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -13.0
+margin_right = 39.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 1, 0.701961, 0.901961 )
+text = "100%"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

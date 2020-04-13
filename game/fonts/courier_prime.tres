@@ -1,0 +1,8 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/CourierPrime-Regular.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 22
+outline_color = Color( 0, 1, 0.701961, 0.901961 )
+font_data = ExtResource( 1 )
