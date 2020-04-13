@@ -21,6 +21,7 @@ var next_pathway: Pathway
 var current: Curve3D
 var current_pathway: Pathway
 var up := Vector3.UP
+var health := 100.0
 
 var active_spacemod  # No type to make this nullable
 
@@ -181,3 +182,11 @@ func get_local_direction() -> Vector3:
 
 func get_local_smoothed_direction() -> Vector3:
     return global_transform.basis.xform_inv(smoothed_direction) / drift
+
+
+func heal(amount: float) -> void:
+    health = clamp(health + amount, 0, 100)
+
+
+func damage(amount: float) -> void:
+    health = clamp(health - amount, 0, 100)
