@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
     var pos = start + ((ahead - start) * 0.5)
     
     if active_spacemod:
-        up = active_spacemod.get_up_vector(global_transform, up)
+        up = active_spacemod.get_up_vector(pos, up)
     
     desired.origin = pos + smoothed_direction
     desired = desired.looking_at(ahead + smoothed_direction, up)

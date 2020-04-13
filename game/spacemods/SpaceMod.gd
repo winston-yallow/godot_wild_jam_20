@@ -20,7 +20,7 @@ func on_player_left_area() -> void:
     pass
 
 
-func get_up_vector(_transform: Transform, up: Vector3) -> Vector3:
+func get_up_vector(_pos: Vector3, up: Vector3) -> Vector3:
     return up
 
 
