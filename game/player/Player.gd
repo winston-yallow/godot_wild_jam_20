@@ -1,4 +1,4 @@
-extends Spatial
+extends KinematicBody
 class_name Player
 
 
@@ -58,9 +58,10 @@ func _process(delta: float) -> void:
         direction, delta * smoothness
     )
     
-    offset += delta * speed
-    var ahead := _interpolate_offset(offset + lookahead, direction)
-    var start := _interpolate_offset(offset, direction, true)
+    var offset_change = delta * speed
+    var desired_offset = offset + offset_change
+    var ahead := _interpolate_offset(desired_offset + lookahead, direction)
+    var start := _interpolate_offset(desired_offset, direction, true)
     var pos = start + ((ahead - start) * 0.5)
     
     if active_spacemod:
@@ -68,8 +69,18 @@ func _process(delta: float) -> void:
     
     desired.origin = pos + smoothed_direction
     desired = desired.looking_at(ahead + smoothed_direction, up)
+    var new_transform := global_transform.interpolate_with(desired, delta * smoothness)
+    var velo := (new_transform.origin - global_transform.origin) / delta
     
-    global_transform = global_transform.interpolate_with(desired, delta * smoothness)
+    var remaining_velo := move_and_slide(velo)
+    global_transform.basis = new_transform.basis
+    
+    var f := clamp(remaining_velo.z / velo.z, 0.0, 1.0)
+    
+    offset += offset_change * f
+    
+    # TODO: decided based on remaining velo if damage should be applied
+    # and if the player must be reset/freezed
 
 
 # warning-ignore:unused_argument
