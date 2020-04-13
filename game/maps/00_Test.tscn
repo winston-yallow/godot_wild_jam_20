@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://pathways/Pathway.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tmp/icon_texture.png" type="Texture" id=3]
 [ext_resource path="res://hud/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://spacemods/SpaceModPath.gd" type="Script" id=5]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -25,7 +26,31 @@ _data = {
 
 [sub_resource type="Curve3D" id=4]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, -5, 0, 0, 5, 0, 0, 5, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 5, 0, 0, 0, 0, 0, 0, 10, 0, -5, 5, 0, 0, -5, 0, 0, 5, 0, -10, 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, -5, 0, 0, 5, 0, 0, 5, 0, 10, 0, 0, 0, 0, 0, -8, 10, 0, 5, -0.518682, 0, 4.58685, 0.518682, 0, -4.58685, 13.993, 0, -9.9723, 0.939417, 0, 3.78909, -0.939417, 0, -3.78909, 13.6868, 0, -18.4325, 3.9683, 0, 0.608316, -3.9683, 0, -0.608316, 4.88559, 0, -24.8642, 2.9724, 0, -1.85497, -2.9724, 0, 1.85497, -9.26405, 0, -23.5102, 4.39184, 0, -1.0694, -4.39184, 0, 1.0694, -18.8382, 0, -23.3759, 1.9113, 0, -2.18203, -1.9113, 0, 2.18203, -23.0742, 0, -17.2935, 0.54211, 0, -2.57726, -0.54211, 0, 2.57726, -30.0979, 0, -12.4059, 0.0182877, 0, -3.52294, -0.0182877, 0, 3.52294, -28.7043, 0, -4.32909, -0.325846, 0, -2.89638, 0.325846, 0, 2.89638, -31.3849, 0, 4.33229, -1.83284, 0, -3.07815, 1.83284, 0, 3.07815, -26.1642, 0, 9.45389, -2.96879, 0, -2.20849, 2.96879, 0, 2.20849, -23.1223, 0, 16.4378, -1.36575, 0, 1.30367, 1.36575, 0, -1.30367, -14.7105, 0, 13.4891, 0, 0, 6, 0, 0, 0, -10, 0, 3, 0, 0, 0, 0, 0, 0, -10, 0, -8.74228e-07 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=17]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 8, 0, 0, 4, 0, 0, 8, 0, 0, 0, 0, 10, 4, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 3, 0, 0, -3, 0, 10, -5, 3, 0, 0, -3, 0, 0, -5, 10, -10, 2.22255, 0.433704, 0.0259809, -2.22255, -0.433704, -0.0259809, -15.0749, 9.39669, -9.90609, 0.220108, 1.04111, -4.37773, -0.373519, -1.76674, 7.42892, -20, 7, -5, 0, 0, -7, 0, 0, 0, -20, 0, 5, -5, 0, 0, 5, 0, 0, -15, 0, 10, 0, 0, 0, 0, 0, 0, -10, 0, 5, 0, 0, 0, 0, 0, 0, -10, 0, -8.74228e-07 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 4, 7, 4 )
+
+[sub_resource type="Curve3D" id=19]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2, -1.19385, -1.98773, -2.56673, 1.19385, 1.98773, 2.56673, 2.8101, 5, 9.00003, -2, 0, 0, 0, 0, 0, 8, 9, 14, 0, 0, 0, 0, 0, 0, 10, 9, 14 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="BoxShape" id=22]
+extents = Vector3( 1, 4, 4 )
+
+[sub_resource type="Curve3D" id=23]
+_data = {
+"points": PoolVector3Array( -12, 0, 0, 12, 0, 0, 0, 3, 0, -4.3258, 0, 1.50004, 4.3258, 0, -1.50004, 18.0176, 3, -1.78198, -3.49932, 0, 3.02366, 3.49932, 0, -3.02366, 26.7468, 3, -6.35948, -1.09679, 0, 5.29833, 1.09679, 0, -5.29833, 32.6686, 3, -16.9092, 0.766899, 0, 5.26447, -0.766899, 0, -5.26447, 32.972, 3, -29.1205, 5.09052, 0, 0.217278, -5.09052, 0, -0.217278, 23.6598, 3, -39.614, 0, 0, -8, 0, 0, 0, 13, 3, -28, 0, 0, 0, 0, 0, 0, 13, 3, -25 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 )
 }
 
@@ -74,8 +99,14 @@ size = Vector3( 1, 3, 14 )
 [sub_resource type="CubeMesh" id=10]
 size = Vector3( 3, 3, 9 )
 
+[sub_resource type="CubeMesh" id=20]
+size = Vector3( 20, 3, 20 )
+
 [sub_resource type="CylinderMesh" id=11]
 height = 3.0
+
+[sub_resource type="CylinderMesh" id=21]
+height = 7.0
 
 [node name="00_Test" type="Spatial"]
 
@@ -102,6 +133,39 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 0,
 curve = SubResource( 4 )
 degree = 90.0
 only_forward = true
+
+[node name="Pathway5" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 0, 0 )
+curve = SubResource( 17 )
+
+[node name="SpaceModPath" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -4 )
+script = ExtResource( 5 )
+associate = true
+associated_pathway = NodePath("../Pathway5")
+target_path = NodePath("Path")
+end_delay = 1.0
+
+[node name="CollisionShape" type="CollisionShape" parent="SpaceModPath"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+shape = SubResource( 18 )
+
+[node name="Path" type="Path" parent="SpaceModPath"]
+curve = SubResource( 19 )
+
+[node name="SpaceModPath2" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 25 )
+script = ExtResource( 5 )
+associate = true
+associated_pathway = NodePath("../Pathway4")
+target_path = NodePath("Path")
+end_delay = 1.0
+
+[node name="CollisionShape" type="CollisionShape" parent="SpaceModPath2"]
+shape = SubResource( 22 )
+
+[node name="Path" type="Path" parent="SpaceModPath2"]
+curve = SubResource( 23 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
@@ -181,6 +245,18 @@ material_override = SubResource( 12 )
 mesh = SubResource( 10 )
 material/0 = null
 
+[node name="Obstacle18" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, 5.55505 )
+material_override = SubResource( 12 )
+mesh = SubResource( 20 )
+material/0 = null
+
+[node name="Obstacle19" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 14.5, 5.55505 )
+material_override = SubResource( 12 )
+mesh = SubResource( 20 )
+material/0 = null
+
 [node name="Obstacle4" type="MeshInstance" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.5, -7.44495 )
 material_override = SubResource( 12 )
@@ -215,6 +291,90 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0371375, -0.5, -11.6515 )
 material_override = SubResource( 12 )
 mesh = SubResource( 11 )
+material/0 = null
+
+[node name="Obstacle20" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03714, 9.5, 4.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle21" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0371, 9.5, 4.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle22" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0371, 9.5, 14.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle23" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03714, 9.5, 14.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle24" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03714, 9.5, 14.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle25" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0371, 9.5, -2.6515 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle26" type="MeshInstance" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03714, 9.5, -2.6515 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle27" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 7.5, -3.6515 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle31" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 3.5, -5.6515 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle32" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 3.5, 5.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle33" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 3.5, 10.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle28" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 9.5, -1.6515 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle29" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 10.5, 2.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Obstacle30" type="MeshInstance" parent="Geometry"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9.96286, 12.5, 7.3485 )
+material_override = SubResource( 12 )
+mesh = SubResource( 21 )
 material/0 = null
 
 [node name="Obstacle10" type="MeshInstance" parent="Geometry"]
