@@ -1,33 +1,31 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://weapons/laser_gun/LaserGun.gd" type="Script" id=2]
 
-[sub_resource type="SphereMesh" id=1]
-radius = 0.25
-height = 0.3
-is_hemisphere = true
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.2, 0.2, 0.2, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="LaserGun" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="TargetingPivot" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22146, 0 )
 
 [node name="EmissionPoint" type="Position3D" parent="TargetingPivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.131604 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.331152 )
 
-[node name="CSGCylinder" type="CSGCylinder" parent="TargetingPivot"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.363485 )
+[node name="Outer" type="CSGCylinder" parent="TargetingPivot"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.252989 )
 operation = 1
-radius = 0.0520684
-height = 0.730119
+radius = 0.0228572
+height = 0.538248
+material = SubResource( 1 )
 
-[node name="CSGCylinder2" type="CSGCylinder" parent="TargetingPivot/CSGCylinder"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103774, 4.47035e-08 )
+[node name="Inner" type="CSGCylinder" parent="TargetingPivot/Outer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0149608, 4.08213e-08 )
 operation = 2
-radius = 0.0381902
-height = 0.556979
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = null
+radius = 0.0160322
+height = 0.537421
+material = SubResource( 2 )
