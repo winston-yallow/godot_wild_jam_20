@@ -77,8 +77,10 @@ func _process(delta: float) -> void:
     global_transform.basis = new_transform.basis
     
     var f: float
-    if velo.z > 0:
-        f = clamp(remaining_velo.z / velo.z, 0.0, 1.0)
+    var local_velo := global_transform.basis.xform_inv(velo)
+    var local_remaining := global_transform.basis.xform_inv(remaining_velo)
+    if local_velo.z != 0:
+        f = clamp(local_remaining.z / local_velo.z, 0.0, 1.0)
     else:
         f = 0
     
