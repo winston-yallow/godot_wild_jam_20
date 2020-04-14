@@ -4,6 +4,7 @@ extends Area
 var harm = 0.2
 var speed = 20
 var lifetime = 2.0
+var exclude := []
 
 
 func _ready() -> void:
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(other: PhysicsBody) -> void:
-    if other.has_method('damage'):
+    if other.has_method('damage') and not other in exclude:
         other.damage(harm)
     queue_free()
 
