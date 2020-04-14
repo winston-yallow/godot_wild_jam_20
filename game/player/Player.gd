@@ -26,6 +26,11 @@ var health := 100.0
 var active_spacemod  # No type to make this nullable
 
 onready var path_detector: Area = $PathDetector
+onready var lg_left = $LaserGunLeft
+onready var lg_right = $LaserGunRight
+onready var target = $Target
+onready var target_left = $Target/TargetLeft
+onready var target_right = $Target/TargetRight
 
 
 func _ready() -> void:
@@ -35,6 +40,9 @@ func _ready() -> void:
     # warning-ignore:return_value_discarded
     path_detector.connect('area_exited', self, '_on_area_exited')
     
+    lg_left.target = target_left
+    lg_right.target = target_right
+    
     desired = global_transform
     current_pathway = get_node(first_path)
     current = current_pathway.get_global_curve()
@@ -42,6 +50,15 @@ func _ready() -> void:
     var ahead := _interpolate_offset(offset + lookahead, Vector3.UP)
     var start := _interpolate_offset(offset, Vector3.UP, true)
     look_at_from_position(start, ahead, Vector3.UP)
+
+
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed('weapon_primary'):
+        lg_left.active = true
+        lg_right.active = true
+    elif event.is_action_released('weapon_primary'):
+        lg_left.active = false
+        lg_right.active = false
 
 
 func _process(delta: float) -> void:
@@ -85,6 +102,9 @@ func _process(delta: float) -> void:
         f = 0
     
     offset += offset_change * f
+    
+    lg_left.speed_boost = speed * f
+    lg_right.speed_boost = speed * f
     
     # TODO: decided based on remaining velo if damage should be applied
     # and if the player must be reset/freezed
