@@ -73,6 +73,12 @@ game_down={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Enemies"
+3d_physics/layer_3="Obstacles"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
