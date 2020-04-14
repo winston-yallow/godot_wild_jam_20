@@ -76,7 +76,11 @@ func _process(delta: float) -> void:
     var remaining_velo := move_and_slide(velo)
     global_transform.basis = new_transform.basis
     
-    var f := clamp(remaining_velo.z / velo.z, 0.0, 1.0)
+    var f: float
+    if velo.z > 0:
+        f = clamp(remaining_velo.z / velo.z, 0.0, 1.0)
+    else:
+        f = 0
     
     offset += offset_change * f
     
