@@ -2,7 +2,7 @@ extends Area
 
 
 var harm = 0.2
-var speed = 30
+var speed = 20
 var lifetime = 2.0
 
 
