@@ -27,6 +27,8 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="PathDetector" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape" type="CollisionShape" parent="PathDetector"]
 shape = SubResource( 4 )
