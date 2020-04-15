@@ -22,6 +22,7 @@ var current: Curve3D
 var current_pathway: Pathway
 var up := Vector3.UP
 var health := 100.0
+var velocity := Vector3()
 
 var active_spacemod  # No type to make this nullable
 
@@ -88,13 +89,13 @@ func _process(delta: float) -> void:
     desired.origin = pos + smoothed_direction
     desired = desired.looking_at(ahead + smoothed_direction, up)
     var new_transform := global_transform.interpolate_with(desired, delta * smoothness)
-    var velo := (new_transform.origin - global_transform.origin) / delta
+    velocity = (new_transform.origin - global_transform.origin) / delta
     
-    var remaining_velo := move_and_slide(velo)
+    var remaining_velo := move_and_slide(velocity)
     global_transform.basis = new_transform.basis
     
     var f: float
-    var local_velo := global_transform.basis.xform_inv(velo)
+    var local_velo := global_transform.basis.xform_inv(velocity)
     var local_remaining := global_transform.basis.xform_inv(remaining_velo)
     if local_velo.z != 0:
         f = clamp(local_remaining.z / local_velo.z, 0.0, 1.0)
