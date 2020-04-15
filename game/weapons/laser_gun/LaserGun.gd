@@ -5,10 +5,12 @@ export(int, FLAGS, 'Player', 'Enemies', 'Obstacles') var collision_mask = 0
 export var material: Material
 export var check_visibility := true
 export var speed_boost := 0.0
+export var auto_exclude: NodePath
 
 var active := false
 var cooldown := 0.1
-var exclude := []
+var exclude_gun := []
+var exclude_bullet := []
 
 var next_shot := cooldown
 
@@ -22,6 +24,8 @@ const LaserBullet = preload('res://weapons/laser_gun/LaserBullet.tscn')
 func _ready() -> void:
     targeting_pivot = $TargetingPivot
     emission_point = $TargetingPivot/EmissionPoint
+    if auto_exclude and has_node(auto_exclude):
+        exclude_gun.append(get_node(auto_exclude))
 
 
 func _process(delta: float) -> void:
@@ -45,7 +49,7 @@ func _try_shooting() -> void:
         var result := space_state.intersect_ray(
             emission_point.global_transform.origin,
             target.global_transform.origin,
-            exclude,
+            exclude_gun,
             collision_mask
         )
         if result and result.collider != target:
@@ -55,6 +59,6 @@ func _try_shooting() -> void:
     get_tree().current_scene.add_child(bullet)
     bullet.global_transform = emission_point.global_transform
     bullet.collision_mask = collision_mask
-    bullet.exclude = exclude
+    bullet.exclude = exclude_bullet
     bullet.speed += speed_boost
     bullet.set_material(material)
