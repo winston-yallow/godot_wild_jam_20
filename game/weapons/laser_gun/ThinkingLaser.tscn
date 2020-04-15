@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://weapons/laser_gun/LaserGun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://weapons/laser_gun/ThinkingLaser.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 1, 0, 0.560784, 1 )
+
+[node name="ThinkingLaser" type="Area"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="LaserGun" parent="." instance=ExtResource( 1 )]
+collision_mask = 7
+material = SubResource( 1 )
+check_visibility = false
+
+[node name="Target" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
