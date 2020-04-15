@@ -10,7 +10,7 @@ flags_unshaded = true
 albedo_color = Color( 1, 0, 0.819608, 1 )
 
 [sub_resource type="CapsuleMesh" id=3]
-radius = 0.008
+radius = 0.01
 mid_height = 0.5
 
 [node name="LaserBullet" type="Area"]
