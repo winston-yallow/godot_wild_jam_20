@@ -62,7 +62,7 @@ func _input(event: InputEvent) -> void:
         lg_right.active = false
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
     
     direction = Vector3()
     direction.x += Input.get_action_strength('game_right') * drift
