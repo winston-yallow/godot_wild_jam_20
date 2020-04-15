@@ -2,7 +2,7 @@ extends Spatial
 
 
 export(int, FLAGS, 'Player', 'Enemies', 'Obstacles') var collision_mask = 0
-export var material: Material
+export var color := Color(1, 1, 1)
 export var check_visibility := true
 export var speed_boost := 0.0
 export var auto_exclude: NodePath
@@ -60,5 +60,5 @@ func _try_shooting() -> void:
     bullet.global_transform = emission_point.global_transform
     bullet.collision_mask = collision_mask
     bullet.exclude = exclude_bullet
+    bullet.color = color
     bullet.speed += speed_boost
-    bullet.set_material(material)

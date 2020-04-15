@@ -8,6 +8,7 @@ var speed := 20
 var lifetime := 2.0
 var exclude := []
 var lookahead := 1.5
+var color := Color(1, 1, 1)
 
 
 func _physics_process(delta: float) -> void:
@@ -33,6 +34,3 @@ func _physics_process(delta: float) -> void:
         queue_free()
     
     global_transform.origin += movement
-
-func set_material(mat: Material):
-    $Mesh.material_override = mat
