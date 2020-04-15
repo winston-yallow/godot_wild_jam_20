@@ -17,6 +17,8 @@ shader = SubResource( 4 )
 material = SubResource( 5 )
 radius = 0.01
 mid_height = 0.5
+radial_segments = 8
+rings = 2
 
 [sub_resource type="MultiMesh" id=3]
 color_format = 2
