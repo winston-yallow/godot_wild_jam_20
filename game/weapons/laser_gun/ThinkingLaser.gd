@@ -20,6 +20,7 @@ func _ready() -> void:
     connect('body_entered', self, '_on_body_entered')
     # warning-ignore:return_value_discarded
     connect('body_exited', self, '_on_body_exited')
+    cooldown = 0
 
 
 func _process(delta: float) -> void:
@@ -41,9 +42,13 @@ func _process(delta: float) -> void:
 
 
 func _recalc_target_pos() -> void:
-    var dist := (player.global_transform.origin - global_transform.origin).length()
-    var traveltime = dist / laser_bullet_speed
-    var offset = interpolated_velocity * (traveltime + (cooldown * 0.75))
+    # Lots of magic numbers and weird stuff going on here. See handwritten notes
+    # for exact calculations :P
+    var vec_to_player := player.global_transform.origin - global_transform.origin
+    var dist := vec_to_player.length()
+    var traveltime := dist / laser_bullet_speed
+    var angle_factor := (interpolated_velocity.angle_to(-vec_to_player) / PI) + 0.5
+    var offset = interpolated_velocity * (traveltime + (cooldown * 0.5)) * angle_factor
     target.global_transform.origin = player.global_transform.origin + offset
 
 
