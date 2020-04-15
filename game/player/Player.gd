@@ -23,6 +23,7 @@ var current_pathway: Pathway
 var up := Vector3.UP
 var health := 100.0
 var velocity := Vector3()
+var movement_factor: float
 
 var active_spacemod  # No type to make this nullable
 
@@ -94,18 +95,17 @@ func _physics_process(delta: float) -> void:
     var remaining_velo := move_and_slide(velocity)
     global_transform.basis = new_transform.basis
     
-    var f: float
     var local_velo := global_transform.basis.xform_inv(velocity)
     var local_remaining := global_transform.basis.xform_inv(remaining_velo)
     if local_velo.z != 0:
-        f = clamp(local_remaining.z / local_velo.z, 0.0, 1.0)
+        movement_factor = clamp(local_remaining.z / local_velo.z, 0.0, 1.0)
     else:
-        f = 0
+        movement_factor = 0
     
-    offset += offset_change * f
+    offset += offset_change * movement_factor
     
-    lg_left.speed_boost = speed * f
-    lg_right.speed_boost = speed * f
+    lg_left.speed_boost = speed * movement_factor
+    lg_right.speed_boost = speed * movement_factor
     
     # TODO: decided based on remaining velo if damage should be applied
     # and if the player must be reset/freezed

@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
         return
     
     interpolated_velocity = interpolated_velocity.linear_interpolate(
-        player.velocity, delta * smoothness
+        (player.velocity * player.movement_factor), delta * smoothness
     )
     
     if not active:
