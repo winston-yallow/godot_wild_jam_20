@@ -14,18 +14,18 @@ script = ExtResource( 2 )
 [node name="TargetingPivot" type="Position3D" parent="."]
 
 [node name="EmissionPoint" type="Position3D" parent="TargetingPivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.331152 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.28278 )
 
 [node name="Outer" type="CSGCylinder" parent="TargetingPivot"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.252989 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.17032 )
 operation = 1
 radius = 0.0228572
-height = 0.538248
+height = 0.366589
 material = SubResource( 1 )
 
 [node name="Inner" type="CSGCylinder" parent="TargetingPivot/Outer"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0149608, 4.08213e-08 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0284199, 4.14096e-08 )
 operation = 2
 radius = 0.0160322
-height = 0.537421
+height = 0.349663
 material = SubResource( 2 )
