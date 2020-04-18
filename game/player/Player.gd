@@ -45,13 +45,7 @@ func _ready() -> void:
     lg_left.target = target_left
     lg_right.target = target_right
     
-    desired = global_transform
-    current_pathway = get_node(first_path)
-    current = current_pathway.get_global_curve()
-    offset = 0.0
-    var ahead := _interpolate_offset(offset + lookahead, Vector3.UP)
-    var start := _interpolate_offset(offset, Vector3.UP, true)
-    look_at_from_position(start, ahead, Vector3.UP)
+    _restart()
 
 
 func _input(event: InputEvent) -> void:
@@ -119,6 +113,28 @@ func _physics_process(delta: float) -> void:
     
     # TODO: decided based on remaining velo if damage should be applied
     # and if the player must be reset/freezed
+
+
+func _restart():
+    direction = Vector3()
+    smoothed_direction = Vector3()
+    possible_pathways = []
+    possible_spacemods = []
+    has_next = false
+    up = Vector3.UP
+    health = 100.0
+    velocity = Vector3()
+    
+    var first := get_node(first_path)
+    current_pathway = first
+    current = current_pathway.get_global_curve()
+    offset = 0.0
+    var ahead := _interpolate_offset(offset + lookahead, Vector3.UP)
+    var start := _interpolate_offset(offset, Vector3.UP, true)
+    look_at_from_position(start, ahead, Vector3.UP)
+    desired = global_transform
+    
+    $CamTarget/Cam.global_transform = $CamTarget.global_transform
 
 
 # warning-ignore:unused_argument
