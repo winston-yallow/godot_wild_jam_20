@@ -2,6 +2,8 @@ extends KinematicBody
 class_name Player
 
 
+signal restarted
+
 export var speed := 8.0
 export var drift := 2.0
 export var smoothness := 6.0
@@ -118,6 +120,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _restart():
+    
+    emit_signal('restarted')
+    
     direction = Vector3()
     smoothed_direction = Vector3()
     possible_pathways = []
