@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/drone_health.ogg-1d0b5341ebb7b9bfef7a89fa0e4f172f.oggstr"
+
+[deps]
+
+source_file="res://maps/tutorial_audio/drone_health.ogg"
+dest_files=[ "res://.import/drone_health.ogg-1d0b5341ebb7b9bfef7a89fa0e4f172f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

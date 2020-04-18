@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hello_pilot.ogg-acadfc8c8e9bd46eac8b55c8ba8bf96c.oggstr"
+
+[deps]
+
+source_file="res://maps/tutorial_audio/hello_pilot.ogg"
+dest_files=[ "res://.import/hello_pilot.ogg-acadfc8c8e9bd46eac8b55c8ba8bf96c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

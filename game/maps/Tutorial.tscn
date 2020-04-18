@@ -1,0 +1,200 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://pathways/Pathway.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://maps/gridblocks/block_lib.tres" type="MeshLibrary" id=3]
+[ext_resource path="res://hud/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://maps/mars_env.tres" type="Environment" id=5]
+[ext_resource path="res://weapons/laser_gun/BulletDrawing.tscn" type="PackedScene" id=6]
+[ext_resource path="res://weapons/laser_gun/ThinkingLaser.tscn" type="PackedScene" id=7]
+[ext_resource path="res://effects/AudioTrigger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/courier_prime.tres" type="DynamicFont" id=9]
+[ext_resource path="res://maps/tutorial_audio/weapon_systems.ogg" type="AudioStream" id=10]
+[ext_resource path="res://maps/tutorial_audio/control_schemes.ogg" type="AudioStream" id=11]
+[ext_resource path="res://maps/tutorial_audio/path_selection.ogg" type="AudioStream" id=12]
+
+[sub_resource type="SphereShape" id=1]
+radius = 23.1452
+
+[sub_resource type="Curve3D" id=2]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -40, 0, 0, 0, 0, 0, 0, 0, 0, -344 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=3]
+_data = {
+"points": PoolVector3Array( 0, 0, -3, 0, 0, 3, 0, 0, 0, -3, 0, 0, 3, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 76, 0, 5 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=4]
+_data = {
+"points": PoolVector3Array( 0, 0, -3, 0, 0, 3, 0, 0, 0, 3, 0, 0, -3, 0, 0, -5, 0, 5, 0, 0, 0, 0, 0, 0, -68, 0, 5 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Control
+
+
+func _ready() -> void:
+    var timer = get_tree().create_timer(15)
+    timer.connect('timeout', self, 'queue_free')
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Control
+
+
+func _ready() -> void:
+    var timer := get_tree().create_timer(42)
+    # warning-ignore:return_value_discarded
+    timer.connect('timeout', self, 'make_visible')
+
+func make_visible():
+    visible = true
+    var timer := get_tree().create_timer(5)
+    # warning-ignore:return_value_discarded
+    timer.connect('timeout', self, 'return_to_main_menu')
+
+func return_to_main_menu():
+    # warning-ignore:return_value_discarded
+    get_tree().change_scene(\"res://MainMenu.tscn\")
+"
+
+[node name="00_Test" type="Spatial"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 3 )
+cell_size = Vector3( 8, 8, 8 )
+cell_octant_size = 32
+collision_layer = 4
+collision_mask = 0
+data = {
+"cells": PoolIntArray( -65536, 0, 1611661313, -2, 0, 1612054529, -1, 0, 1611661326, -65536, 65491, 1611268097, -65535, 65491, 1611268097, -65534, 65491, 1611268097, -65533, 65491, 1611268097, -65532, 65491, 1611268097, -65531, 65491, 1611268097, -65530, 65491, 1611268097, -65529, 65491, 1611268097, -65528, 65491, 1611661318, -11, 65491, 1611268102, -10, 65491, 1611268097, -9, 65491, 1611268097, -8, 65491, 1611268097, -7, 65491, 1611268097, -6, 65491, 1611268097, -5, 65491, 1611268097, -4, 65491, 1611268097, -3, 65491, 1611268097, -2, 65491, 1611268097, -1, 65491, 1611268097, -65536, 65492, 1610612750, -65535, 65492, 1610612750, -65534, 65492, 1610612750, -65533, 65492, 1610612750, -65532, 65492, 1610612750, -65531, 65492, 1610612750, -65530, 65492, 1610612750, -65529, 65492, 1610612750, -65528, 65492, 1611661313, -11, 65492, 1612054529, -10, 65492, 1610612750, -9, 65492, 1610612750, -8, 65492, 1610612750, -7, 65492, 1610612750, -6, 65492, 1610612750, -5, 65492, 1610612750, -4, 65492, 1610612750, -3, 65492, 1610612750, -2, 65492, 1610612750, -1, 65492, 1610612750, -65536, 65493, 1610612740, -65535, 65493, 1610612737, -65534, 65493, 1610612737, -65533, 65493, 1610612737, -65532, 65493, 1610612737, -65531, 65493, 1610612737, -65530, 65493, 1610612737, -65529, 65493, 1610612737, -65528, 65493, 1610612742, -11, 65493, 1612054534, -10, 65493, 1610612737, -9, 65493, 1610612737, -8, 65493, 1610612737, -7, 65493, 1610612737, -6, 65493, 1610612737, -5, 65493, 1610612737, -4, 65493, 1610612737, -3, 65493, 1610612737, -2, 65493, 1612054532, -1, 65493, 1610612750, -65536, 65494, 1611661313, -2, 65494, 1612054529, -1, 65494, 1612054542, 0, 65495, 1612054544, 65534, 65495, 1611661328, 65535, 65495, 1612054543, -65536, 65495, 1611661313, -2, 65495, 1612054529, -1, 65495, 1612054542, -65536, 65496, 1611661313, -2, 65496, 1612054529, -1, 65496, 1612054542, -65536, 65497, 1611661313, -2, 65497, 1612054529, -1, 65497, 1612054542, -65536, 65498, 1611661313, -2, 65498, 1612054529, -1, 65498, 1612054542, -65536, 65499, 1611661313, -2, 65499, 1612054529, -1, 65499, 1612054542, 0, 65500, 1612054544, 65534, 65500, 1611661328, 65535, 65500, 1612054543, -65536, 65500, 1611661313, -2, 65500, 1612054529, -1, 65500, 1612054542, -65536, 65501, 1611661313, -2, 65501, 1612054529, -1, 65501, 1612054542, -65536, 65502, 1611661313, -2, 65502, 1612054529, -1, 65502, 1612054542, -65536, 65503, 1611661313, -2, 65503, 1612054529, -1, 65503, 1612054542, -65536, 65504, 1611661313, -2, 65504, 1612054529, -1, 65504, 1612054542, -65536, 65505, 1611661313, -2, 65505, 1612054529, -1, 65505, 1612054542, -65536, 65506, 1611661313, -2, 65506, 1612054529, -1, 65506, 1612054542, -65536, 65507, 1611661313, -2, 65507, 1612054529, -1, 65507, 1612054542, -65536, 65508, 1611661313, -2, 65508, 1612054529, -1, 65508, 1612054542, -65536, 65509, 1611661313, -2, 65509, 1612054529, -1, 65509, 1612054542, -65536, 65510, 1611661313, -2, 65510, 1612054529, -1, 65510, 1612054542, -65536, 65511, 1611661313, -2, 65511, 1612054529, -1, 65511, 1612054542, 0, 65512, 1612054544, 65534, 65512, 1611661328, 65535, 65512, 1612054543, -65536, 65512, 1611661313, -2, 65512, 1612054529, -1, 65512, 1612054542, -65536, 65513, 1611661313, -2, 65513, 1612054529, -1, 65513, 1612054542, -65536, 65514, 1611661313, -2, 65514, 1612054529, -1, 65514, 1612054542, -65536, 65515, 1611661313, -2, 65515, 1612054529, -1, 65515, 1612054542, 0, 65516, 1612054544, 65534, 65516, 1611661328, 65535, 65516, 1612054543, -65536, 65516, 1611661313, -2, 65516, 1612054529, -1, 65516, 1612054542, -65536, 65517, 1611661313, -2, 65517, 1612054529, -1, 65517, 1612054542, -65536, 65518, 1611661313, -2, 65518, 1612054529, -1, 65518, 1612054542, -65536, 65519, 1611661313, -2, 65519, 1612054529, -1, 65519, 1612054542, -65536, 65520, 1611661313, -2, 65520, 1612054529, -1, 65520, 1611661326, -65536, 65521, 1611661313, -2, 65521, 1612054529, -1, 65521, 1611661326, -65536, 65522, 1611661313, -2, 65522, 1612054529, -1, 65522, 1611661326, -65536, 65523, 1611661313, -2, 65523, 1612054529, -1, 65523, 1611661326, 0, 65524, 1612054544, 65534, 65524, 1611661328, 65535, 65524, 1612054543, -65536, 65524, 1611661313, -2, 65524, 1612054529, -1, 65524, 1611661326, -65536, 65525, 1611661313, -2, 65525, 1612054529, -1, 65525, 1611661326, -65536, 65526, 1611661313, -2, 65526, 1612054529, -1, 65526, 1611661326, -65536, 65527, 1611661313, -2, 65527, 1612054529, -1, 65527, 1611661326, 0, 65528, 1612054544, 65534, 65528, 1611661328, 65535, 65528, 1612054543, -65536, 65528, 1611661313, -2, 65528, 1612054529, -1, 65528, 1611661326, -65536, 65529, 1611661313, -2, 65529, 1612054529, -1, 65529, 1611661326, -65536, 65530, 1611661313, -2, 65530, 1612054529, -1, 65530, 1611661326, -65536, 65531, 1611661313, -2, 65531, 1612054529, -1, 65531, 1611661326, -65536, 65532, 1611661313, -2, 65532, 1612054529, -1, 65532, 1611661326, -65536, 65533, 1611661313, -2, 65533, 1612054529, -1, 65533, 1611661326, -65536, 65534, 1611661313, -2, 65534, 1612054529, -1, 65534, 1611661326, -65536, 65535, 1611661313, -2, 65535, 1612054529, -1, 65535, 1611661326 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, -1, 0 )
+}
+
+[node name="Control" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, -21 )
+stream = ExtResource( 11 )
+
+[node name="Weapons" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, -139 )
+stream = ExtResource( 10 )
+
+[node name="PathSelection" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, -284.852 )
+stream = ExtResource( 12 )
+
+[node name="Lasers" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -141.023 )
+
+[node name="ThinkingLaser" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -6, -127 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1601, 0, 22.0075 )
+shape = SubResource( 1 )
+
+[node name="ThinkingLaser2" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1, -128 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92628, 23.0065, 5.13868 )
+shape = SubResource( 1 )
+
+[node name="Pathways" type="Spatial" parent="."]
+
+[node name="Pathway" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, 0 )
+curve = SubResource( 2 )
+degree = 0.0
+only_forward = false
+
+[node name="Left" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, -4, -343 )
+curve = SubResource( 3 )
+degree = 90.0
+only_forward = false
+
+[node name="Right" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, -4, -343 )
+curve = SubResource( 4 )
+degree = -90.0
+only_forward = false
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, -4, 0 )
+first_path = NodePath("../Pathways/Pathway")
+
+[node name="BulletDrawing" parent="." instance=ExtResource( 6 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ControlSchemes" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlSchemes"]
+anchor_left = 0.5
+anchor_top = 0.35
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -313.5
+margin_top = -108.0
+margin_right = 313.5
+margin_bottom = 108.0
+custom_fonts/font = ExtResource( 9 )
+text = "
+           |  Mouse/Keyboard   |  Controller  |
+|----------|-------------------|--------------|
+| steering | WASD              | Left Stick   |
+| looking  | mouse movement    | Right Stick  |
+| fire     | Left Mouse Button | RB / R1      |
+| reset    | R                 | Y / Triangle |"
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
+player_path = NodePath("../../Player")
+
+[node name="Completed" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Completed"]
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -117.0
+margin_top = -13.0
+margin_right = 117.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 9 )
+text = "Tuturial Complete!"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="MainSun" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 0.828031, -0.314851, 0.463933, 0, 0.827443, 0.561549, -0.560682, -0.46498, 0.685149, 0, 11, 0 )
+light_energy = 0.9
+light_specular = 0.0
+
+[node name="AdditionalAccent" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( -0.651614, -0.156921, -0.742142, -0.0550789, 0.985574, -0.160033, 0.756548, -0.0634035, -0.650857, 0, 11, 0 )
+light_color = Color( 1, 0.788235, 0.992157, 1 )
+light_energy = 0.3

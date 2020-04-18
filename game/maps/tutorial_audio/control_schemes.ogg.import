@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/control_schemes.ogg-07464a887f1e79ff8e19585771c0ad3a.oggstr"
+
+[deps]
+
+source_file="res://maps/tutorial_audio/control_schemes.ogg"
+dest_files=[ "res://.import/control_schemes.ogg-07464a887f1e79ff8e19585771c0ad3a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
