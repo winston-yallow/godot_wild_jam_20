@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Wild Jam"
-run/main_scene="res://maps/00_Test.tscn"
+run/main_scene="res://maps/Mars.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]

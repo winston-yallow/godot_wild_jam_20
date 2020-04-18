@@ -1,0 +1,151 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://pathways/Pathway.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://maps/terrain/MarsTerrain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://hud/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://maps/mars_env.tres" type="Environment" id=5]
+[ext_resource path="res://weapons/laser_gun/BulletDrawing.tscn" type="PackedScene" id=6]
+[ext_resource path="res://weapons/laser_gun/ThinkingLaser.tscn" type="PackedScene" id=7]
+
+[sub_resource type="SphereShape" id=9]
+radius = 23.8932
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, -29, 0, 0, 29, 0, 0, 0, -0.00185394, 0, -7.8089, 0.00185394, 0, 7.8089, -4.00001, -1, 40, -5.02414, -0.507283, -2.96799, 5.02414, 0.507283, 2.96799, 5.19746, 0, 55.348, -7.77183, 0, 2.93426, 7.77183, 0, -2.93426, 23, 1, 56, -5.40931, -1.43051e-06, 7.04612, 5.40931, 1.43051e-06, -7.04612, 36.5619, 2.46606, 42.8154, -11, 0, 0, 11, 0, 0, 59, 0, 27 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=2]
+_data = {
+"points": PoolVector3Array( -9, 0, 0, 9, 0, 0, 0, 0, 0, -4.49559, -0.220555, 3.76695, 4.49559, 0.220555, -3.76695, 14.191, 1.00787, -8.08584, -4, 0, 3, 4, 0, -3, 32.0284, 0.673762, -15.7288, 0, 0, 10, 0, 0, -10, 39, 0, -33 ),
+"tilts": PoolRealArray( 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=8]
+_data = {
+"points": PoolVector3Array( 0, 0, 9, 0, 0, -9, 0, 0, 0, 6.24653, -1.11826, 2.59561, -6.24653, 1.11826, -2.59561, -10.6013, 1.0244, -13.5688, 5.79885, 0, 3.61986, -5.79885, 0, -3.61986, -22.6825, 2.11473, -19.6356, 1.79353, 0.186549, 3.71687, -1.79353, -0.186549, -3.71687, -32.0902, 1.07153, -29.0651, 8, 0, 0, -8, 0, 0, -42, 0, -38 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=6]
+_data = {
+"points": PoolVector3Array( 15, 0, 0, -15, 0, 0, 0, 0, -1, 1.01987, 0, -6.7991, -1.01987, 0, 6.7991, -18.7584, 0, 7.82622, 0.0992775, 0, -9.48074, -0.0992775, 0, 9.48074, -19.5037, 0, 29.4013, -0.582909, 0, -9.03516, 0.582909, 0, 9.03516, -18.7418, 0, 48.1784, -4.30059, 0, -4.49332, 4.30059, 0, 4.49332, -12.1789, 0, 65.0945, -5, 0, 0, 5, 0, 0, 3, 0, 69 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="00_Test" type="Spatial"]
+
+[node name="MarsTerrain" parent="." instance=ExtResource( 3 )]
+
+[node name="Lasers" type="Spatial" parent="."]
+
+[node name="ThinkingLaser" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2731, 2.38419e-07, -49.5356 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser2" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.0195, -1.66893e-06, -37.5298 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser2"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser3" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0386, 2.24876, -36.5848 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser3"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser4" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.31039, 3.96917, -43.7207 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser4"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser5" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4343, 3.96917, -73.6605 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser5"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser6" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.62665, -2.64513, -29.0385 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser6"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser7" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19562, -0.405975, -21.7801 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser7"]
+shape = SubResource( 9 )
+
+[node name="ThinkingLaser8" parent="Lasers" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8809, -0.405975, -8.38074 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Lasers/ThinkingLaser8"]
+shape = SubResource( 9 )
+
+[node name="BulletDrawing" parent="." instance=ExtResource( 6 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
+player_path = NodePath("../../Player")
+
+[node name="Pathways" type="Spatial" parent="."]
+
+[node name="Pathway" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 98, 0, -23 )
+curve = SubResource( 1 )
+degree = 0.0
+only_forward = false
+
+[node name="Pathway2" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 39, 0, -50 )
+curve = SubResource( 2 )
+degree = 0.0
+only_forward = false
+
+[node name="Pathway3" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -18 )
+curve = SubResource( 8 )
+degree = 0.0
+only_forward = false
+
+[node name="Pathway4" parent="Pathways" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42, 0, 19 )
+curve = SubResource( 6 )
+degree = 0.0
+only_forward = false
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 98, 0, -23 )
+first_path = NodePath("../Pathways/Pathway")
+
+[node name="Position3D" type="Position3D" parent="Player"]
+transform = Transform( 1, 1.08314e-08, 6.73587e-10, -1.08314e-08, 0.992295, 0.123895, 6.73559e-10, -0.123895, 0.992295, -1.04089e-07, 0.612471, 1.19064 )
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( -1, -6.66134e-14, -8.74228e-08, -1.08314e-08, 0.992295, 0.123896, 8.67492e-08, 0.123896, -0.992295, 0, 0.612471, -1.19064 )
+current = true
+far = 200.0
+target = NodePath("../Player/Position3D")
+speed = 8.0
+enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="MainSun" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 0.828031, -0.314851, 0.463933, 0, 0.827443, 0.561549, -0.560682, -0.46498, 0.685149, 0, 11, 0 )
+light_energy = 0.9
+light_specular = 0.0
+
+[node name="AdditionalAccent" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( -0.651614, -0.156921, -0.742142, -0.0550789, 0.985574, -0.160033, 0.756548, -0.0634035, -0.650857, 0, 11, 0 )
+light_color = Color( 1, 0.788235, 0.992157, 1 )
+light_energy = 0.3
