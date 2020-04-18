@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://effects/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://effects/laser1.ogg" type="AudioStream" id=2]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -30,3 +31,9 @@ local_coords = false
 process_material = SubResource( 1 )
 draw_pass_1 = SubResource( 3 )
 script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+unit_db = 15.0
+autoplay = true
+max_distance = 200.0
