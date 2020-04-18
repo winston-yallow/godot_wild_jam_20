@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/close_004.ogg-3540af645922055b1518dd0bcc09033e.oggstr"
+
+[deps]
+
+source_file="res://weapons/laser_gun/close_004.ogg"
+dest_files=[ "res://.import/close_004.ogg-3540af645922055b1518dd0bcc09033e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
