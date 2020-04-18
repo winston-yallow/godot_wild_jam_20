@@ -62,9 +62,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649, -0.059, -0.54 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648932, -0.059, -0.540234 )
 
 [node name="CamTarget" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.971854, 0.235583, 0, -0.235583, 0.971854, 0, 0.6, 1.19 )
+transform = Transform( 1, 0, 0, 0, 0.997127, 0.0757444, 0, -0.0757444, 0.997127, 0, 0.817028, 1.16341 )
 
-[node name="Cam" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 0.971854, 0.235583, 0, -0.235583, 0.971854, 0, 0.6, 1.19 )
-target_path = NodePath("../CamTarget")
-max_angle = 0.25
+[node name="Cam" parent="CamTarget" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+target_path = NodePath("..")

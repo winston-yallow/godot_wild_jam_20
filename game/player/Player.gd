@@ -65,6 +65,16 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
     
+    var cam := get_tree().root.get_camera()
+    var from := cam.global_transform.origin - (cam.global_transform.basis.z * 2)
+    var to := from - (cam.global_transform.basis.z * 100.0)
+    var space_state = get_world().direct_space_state
+    var result = space_state.intersect_ray(from, to, [self], 6, true, false)
+    if result:
+        target.global_transform.origin = result.position
+    else:
+        target.global_transform.origin = to
+    
     direction = Vector3()
     direction.x += Input.get_action_strength('game_right') * drift
     direction.x -= Input.get_action_strength('game_left') * drift

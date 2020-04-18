@@ -3,7 +3,7 @@ extends Spatial
 
 export var speed := 8.0
 export var target_path := NodePath('.')
-export var max_angle := 0.2
+export var max_angle := 0.5
 
 var target: Spatial
 var pivot: Position3D
