@@ -55,6 +55,8 @@ func _input(event: InputEvent) -> void:
     elif event.is_action_released('weapon_primary'):
         lg_left.active = false
         lg_right.active = false
+    elif event.is_action_pressed('reset'):
+        _restart()
 
 
 func _physics_process(delta: float) -> void:
