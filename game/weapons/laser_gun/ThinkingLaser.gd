@@ -12,6 +12,7 @@ var interpolated_velocity := Vector3()
 onready var next_recalc := cooldown
 onready var gun := $LaserGun
 onready var target := $Target
+onready var body := $StaticDestructible
 
 
 func _ready() -> void:
@@ -20,6 +21,8 @@ func _ready() -> void:
     connect('body_entered', self, '_on_body_entered')
     # warning-ignore:return_value_discarded
     connect('body_exited', self, '_on_body_exited')
+    # warning-ignore:return_value_discarded
+    body.connect('destroyed', self, 'queue_free')
     cooldown = 0
 
 
