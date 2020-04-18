@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/laser_gun/LaserGun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/spaceship.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/Cam.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PrismMesh" id=1]
 size = Vector3( 1.5, 2, 0.25 )
@@ -59,3 +60,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649, -0.059, -0.54 )
 
 [node name="TargetRight" type="Position3D" parent="Target"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648932, -0.059, -0.540234 )
+
+[node name="CamTarget" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.971854, 0.235583, 0, -0.235583, 0.971854, 0, 0.6, 1.19 )
+
+[node name="Cam" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 0.971854, 0.235583, 0, -0.235583, 0.971854, 0, 0.6, 1.19 )
+target_path = NodePath("../CamTarget")
+max_angle = 0.25
