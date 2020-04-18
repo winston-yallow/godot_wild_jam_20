@@ -10,7 +10,8 @@ size = Vector3( 1.5, 2, 0.25 )
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.719369, 0.268902, 0.679237 )
 
 [sub_resource type="SphereShape" id=4]
 radius = 4.0
@@ -28,6 +29,7 @@ material/0 = SubResource( 2 )
 [node name="spaceship" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.094209, -0.187669 )
 shape = SubResource( 3 )
 
 [node name="PathDetector" type="Area" parent="."]
