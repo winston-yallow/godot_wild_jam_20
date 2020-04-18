@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/courier_prime.tres" type="DynamicFont" id=2]
 [ext_resource path="res://hud/crosshair.png" type="Texture" id=3]
+[ext_resource path="res://hud/remote_session.ogg" type="AudioStream" id=4]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -39,3 +40,34 @@ margin_top = -32.0
 margin_right = 32.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
+
+[node name="Intro" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.434, 0.7, 0.6202, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Intro"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "root@drone: remote-control activate
+Access denied!
+
+root@drone: sudo remote-control activate
+password: *****************
+
+[INFO] Remote session activated
+[INFO] Connecting to drone...
+[INFO] Connection established"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

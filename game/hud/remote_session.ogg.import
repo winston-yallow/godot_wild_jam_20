@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/remote_session.ogg-ed923b44d7c4082ce0e5bf02f974d9f2.oggstr"
+
+[deps]
+
+source_file="res://hud/remote_session.ogg"
+dest_files=[ "res://.import/remote_session.ogg-ed923b44d7c4082ce0e5bf02f974d9f2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
