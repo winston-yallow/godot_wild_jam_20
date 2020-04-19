@@ -18,11 +18,21 @@ var direction := Vector2()
 var smoothed_direction := Vector2()
 var direction_interpolated := Vector2()
 
+var available := false
+var hit := -1.0
+var first := true
+
 
 func _ready() -> void:
     player = get_node(player_path)
     # warning-ignore:return_value_discarded
     player.connect('restarted', self, '_on_player_restart')
+    # warning-ignore:return_value_discarded
+    player.connect('path_available', self, '_on_path_available')
+    # warning-ignore:return_value_discarded
+    player.connect('path_selected', self, '_on_path_selected')
+    # warning-ignore:return_value_discarded
+    player.connect('hit', self, '_on_hit')
     
     intro_remaining = intro_time
     intro_node = $Intro
@@ -34,6 +44,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+    
+    hit -= delta
     
     if intro_remaining > 0:
         intro_remaining -= delta
@@ -57,9 +69,15 @@ func _draw() -> void:
     var center := cam.unproject_position(player.to_global(player.nose))
     
     # Draw direction indicators
-    draw_arc(center, direction_radius, 0, TAU, 24, Color(0, 1.0, 0.7, 0.6), 1.0)
-    draw_circle(center + smoothed_direction, 4, Color(0, 1.0, 0.7, 0.6))
-    draw_circle(center + direction_interpolated, 2, Color(0, 1.0, 0.7, 0.9))
+    
+    if hit > 0:
+        draw_arc(center, direction_radius, 0, TAU, 24, Color(1.0, 0, 0.2, 0.6), 1.0)
+        draw_circle(center + smoothed_direction, 4, Color(1.0, 0, 0.2, 0.6))
+        draw_circle(center + direction_interpolated, 2, Color(1.0, 0, 0.2, 0.9))
+    else:
+        draw_arc(center, direction_radius, 0, TAU, 24, Color(0, 1.0, 0.7, 0.6), 1.0)
+        draw_circle(center + smoothed_direction, 4, Color(0, 1.0, 0.7, 0.6))
+        draw_circle(center + direction_interpolated, 2, Color(0, 1.0, 0.7, 0.9))
     
     # Configure health text label
     health.text = str(round(player.health)) + '%'
@@ -69,7 +87,23 @@ func _draw() -> void:
 func _on_player_restart():
     intro_remaining = intro_time
     intro_node.visible = true
-    audio.play(0.0)
+    first = false
+    if first:
+        audio.play(0.0)
+    else:
+        $Destroyed.play(0.0)
+
+
+func _on_path_available():
+    available = true
+
+
+func _on_path_selected():
+    available = false
+
+
+func _on_hit():
+    hit = 0.06
 
 
 func _to_vec2(v: Vector3, flip_y := true) -> Vector2:

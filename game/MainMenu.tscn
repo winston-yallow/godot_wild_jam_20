@@ -1,8 +1,40 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+margin_left = 46.0082
+margin_top = 41.5965
+margin_right = 106.008
+margin_bottom = 61.5965
+text = "Tutorial"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 47.899
+margin_top = 92.6467
+margin_right = 107.899
+margin_bottom = 112.647
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 59.8737
+margin_top = 206.722
+margin_right = 449.874
+margin_bottom = 220.722
+text = "More a prototype than anything else... Assets from kenney.nl"
+[connection signal="pressed" from="Button" to="." method="load_tut"]
+[connection signal="pressed" from="Button2" to="." method="load_mars"]

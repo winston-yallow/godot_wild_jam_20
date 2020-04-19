@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Wild Jam"
-run/main_scene="res://maps/GridMars.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
@@ -120,4 +120,4 @@ reset={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://maps/env_objects/default_env.tres"

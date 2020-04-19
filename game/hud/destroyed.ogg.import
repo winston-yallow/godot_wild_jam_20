@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/destroyed.ogg-99bbc99226b13dd7ad61f4ea264ddda9.oggstr"
+
+[deps]
+
+source_file="res://hud/destroyed.ogg"
+dest_files=[ "res://.import/destroyed.ogg-99bbc99226b13dd7ad61f4ea264ddda9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -3,6 +3,9 @@ class_name Player
 
 
 signal restarted
+signal path_selected
+signal path_available
+signal hit
 
 export var speed := 8.0
 export var drift := 2.0
@@ -115,8 +118,8 @@ func _physics_process(delta: float) -> void:
     lg_left.speed_boost = speed * movement_factor
     lg_right.speed_boost = speed * movement_factor
     
-    # TODO: decided based on remaining velo if damage should be applied
-    # and if the player must be reset/freezed
+    if movement_factor < 0.3:
+        damage((1.0-movement_factor) * delta * 10)
 
 
 func _restart():
@@ -160,6 +163,7 @@ func _interpolate_offset(offs: float, dir: Vector3, make_current := false) -> Ve
             has_next = true
             possible_pathways.clear()
         if make_current:
+            emit_signal('path_selected')
             current_pathway = next_pathway
             current = next
             offset = remaining
@@ -217,6 +221,8 @@ func _on_area_entered(other: Area) -> void:
     # Check for pathways
     var parent = other.get_parent()
     if parent is Pathway:
+        if not possible_pathways.size():
+            emit_signal('path_available')
         possible_pathways.append(parent)
 
 
@@ -249,4 +255,8 @@ func heal(amount: float) -> void:
 
 
 func damage(amount: float) -> void:
+    if health - amount < 0:
+        _restart()
+        return
     health = clamp(health - amount, 0, 100)
+    emit_signal('hit')
