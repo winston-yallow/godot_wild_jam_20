@@ -3,7 +3,7 @@ extends Spatial
 
 export(int, FLAGS, 'Player', 'Enemies', 'Obstacles') var collision_mask = 7
 
-var harm := 0.2
+var harm := 1.0
 var speed := 20
 var lifetime := 2.0
 var exclude := []
